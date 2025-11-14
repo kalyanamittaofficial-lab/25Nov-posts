@@ -27,14 +27,6 @@
             transform: scale(1.05);
         }
     </style>
-    <script>
-        // Security check - redirect if not accessed from index
-        if (!sessionStorage.getItem('allowAccess') || sessionStorage.getItem('postId') !== 'day-1') {
-            window.location.href = '/index.html';
-        }
-        sessionStorage.removeItem('allowAccess');
-        sessionStorage.removeItem('postId');
-    </script>
 </head>
 <body>
 

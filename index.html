@@ -44,12 +44,12 @@
         </tr>
     </thead>
     <tbody>
-        <tr onclick="loadPost('day-1')">
+        <tr onclick="window.location.href='posts/day-1/post.html'">
             <td>01</td>
             <td>Half or Whole? (කල්‍යාණමිත්‍රතාව)</td>
             <td>Nov 1, 2025</td>
         </tr>
-        <tr onclick="loadPost('day-2')">
+        <tr onclick="window.location.href='posts/day-2/post.html'">
             <td>02</td>
             <td>Heedfulness (අප්‍රමාදය)</td>
             <td>Nov 2, 2025</td>
@@ -57,15 +57,6 @@
         <!-- Add more days here -->
     </tbody>
 </table>
-
-<script>
-function loadPost(postId) {
-    // Store access token in sessionStorage
-    sessionStorage.setItem('allowAccess', 'true');
-    sessionStorage.setItem('postId', postId);
-    window.location.href = 'posts/' + postId + '/post.html';
-}
-</script>
 
 </body>
 </html>
