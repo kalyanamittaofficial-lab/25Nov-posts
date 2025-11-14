@@ -1,0 +1,264 @@
+/* --- 1. New Color Theme (Buddhism Colors) --- */
+:root {
+    /* Light Mode */
+    --light-bg: #FCFCFC; /* Pure White */
+    --light-text: #1a1a1a; /* Dark Black */
+    --light-card: #FFFBF5; /* Very light saffron-tint */
+    --accent-saffron: #FF9933; /* Monk Robe Orange/Saffron */
+    --accent-gold: #FFD700; /* Gold */
+    --accent-gold-darker: #E6C300;
+    --light-shadow: rgba(0, 0, 0, 0.1);
+
+    /* Dark Mode */
+    --dark-bg: #1a1a1a;
+    --dark-text: #E0E0E0;
+    --dark-card: #2a2a2a;
+    --dark-shadow: rgba(0, 0, 0, 0.5);
+}
+
+/* --- 2. Dark Mode Setup --- */
+body.dark-mode {
+    --light-bg: var(--dark-bg);
+    --light-text: var(--dark-text);
+    --light-card: var(--dark-card);
+    --light-shadow: var(--dark-shadow);
+}
+
+body {
+    font-family: 'Noto Sans Sinhala', sans-serif;
+    background-color: var(--light-bg);
+    color: var(--light-text);
+    line-height: 1.9;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* --- 3. Control Toggles --- */
+.controls {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    display: flex;
+    gap: 10px;
+    z-index: 1000;
+}
+
+.toggle-btn {
+    background-color: var(--accent-saffron);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0 2px 8px var(--light-shadow);
+}
+
+.toggle-btn:hover {
+    background-color: var(--accent-gold-darker);
+    transform: scale(1.05);
+}
+
+/* --- 4. Header Quote --- */
+.header-quote {
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--accent-saffron);
+    margin-bottom: 40px;
+    padding: 30px 20px;
+    background: linear-gradient(135deg, var(--light-card) 0%, var(--light-bg) 100%);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px var(--light-shadow);
+}
+
+.brand-name {
+    margin-top: 15px;
+    font-size: 0.7em;
+    font-weight: 600;
+    color: var(--light-text);
+}
+
+/* --- 5. Main Content --- */
+.main-content {
+    background-color: var(--light-card);
+    padding: 40px 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px var(--light-shadow);
+    margin-bottom: 30px;
+}
+
+h2 {
+    color: var(--accent-saffron);
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+h4 {
+    color: var(--accent-gold-darker);
+    margin-top: 20px;
+}
+
+p {
+    margin-bottom: 20px;
+    text-align: justify;
+}
+
+blockquote {
+    margin: 30px 0;
+    padding: 20px;
+    background-color: rgba(255, 153, 51, 0.05);
+    border-radius: 8px;
+}
+
+ul {
+    margin: 20px 0;
+    padding-left: 30px;
+}
+
+ul li {
+    margin-bottom: 10px;
+    line-height: 1.8;
+}
+
+/* --- 6. Path Container (Accordion) --- */
+.path-container {
+    margin: 30px 0;
+}
+
+.path-step {
+    background-color: var(--light-bg);
+    margin-bottom: 15px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px var(--light-shadow);
+    transition: transform 0.2s;
+}
+
+.path-step:hover {
+    transform: translateY(-2px);
+}
+
+.step-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background: linear-gradient(90deg, var(--accent-gold) 0%, var(--accent-saffron) 100%);
+    color: white;
+    cursor: pointer;
+    user-select: none;
+}
+
+.step-title {
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+.step-icon {
+    font-size: 1.5em;
+    transition: transform 0.3s;
+}
+
+.step-header.active .step-icon {
+    transform: rotate(45deg);
+}
+
+.step-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out;
+    padding: 0 20px;
+}
+
+/* --- 7. Language Toggle --- */
+.lang-content {
+    display: none;
+}
+
+.lang-content.si {
+    display: block;
+}
+
+/* --- 8. Footer --- */
+footer {
+    text-align: center;
+    padding: 20px;
+    color: var(--light-text);
+    font-size: 0.9em;
+}
+
+/* --- 9. Sadhu Section --- */
+.sadhu {
+    text-align: center;
+    font-size: 1.8em;
+    font-weight: 700;
+    color: var(--accent-saffron);
+    margin: 40px 0 20px;
+    padding: 20px;
+    background: linear-gradient(135deg, rgba(255, 153, 51, 0.1) 0%, rgba(255, 215, 0, 0.1) 100%);
+    border-radius: 12px;
+}
+
+/* --- 10. Animation for Hidden Elements --- */
+.hidden {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.hidden.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- 11. Citation --- */
+.citation {
+    font-size: 0.9em;
+    font-style: italic;
+    color: #666;
+    margin-top: 15px;
+}
+
+body.dark-mode .citation {
+    color: #aaa;
+}
+
+/* --- 12. Responsive Design --- */
+@media (max-width: 600px) {
+    .container {
+        padding: 10px;
+    }
+
+    .main-content {
+        padding: 20px 15px;
+    }
+
+    h2 {
+        font-size: 1.4em;
+    }
+
+    .header-quote {
+        font-size: 1.2em;
+        padding: 20px 15px;
+    }
+
+    .step-header {
+        padding: 15px;
+    }
+
+    .step-title {
+        font-size: 1em;
+    }
+}

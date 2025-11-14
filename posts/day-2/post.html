@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post 2: Heedfulness</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="post.css">
+    <style>
+        .back-link {
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            z-index: 1001;
+            padding: 10px 20px;
+            background: linear-gradient(90deg, #FF9933 0%, #FFD700 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+        .back-link:hover {
+            transform: scale(1.05);
+        }
+    </style>
+    <script>
+        // Security check - redirect if not accessed from index
+        if (!sessionStorage.getItem('allowAccess') || sessionStorage.getItem('postId') !== 'day-2') {
+            window.location.href = '/index.html';
+        }
+        sessionStorage.removeItem('allowAccess');
+        sessionStorage.removeItem('postId');
+    </script>
+</head>
+<body>
+
+<a href="https://kalyanamitta.vercel.app/writings" class="back-link">← Back</a>
+
+<div class="controls">
+    <button class="toggle-btn" id="lang-toggle" title="Switch Language">En</button>
+    <button class="toggle-btn" id="mode-toggle" title="Toggle Mode">🌙</button>
+</div>
+
+<div class="container">
+
+    <div id="content-si" class="lang-content si">
+        
+        <header class="header-quote hidden">
+            "අප්‍රමාදෙන භික්ඛවෙ සම්පාදෙථ..."
+            <div class="brand-name">- භාග්‍යවතුන්වහන්සේ -</div>
+        </header>
+
+        <div class="main-content">
+            
+            <section class="hidden">
+                <h2>📌 අප්‍රමාදය - නොසැළකිලිමත් නොවීම</h2>
+                <p>භාග්‍යවතුන් වහන්සේගේ අවසාන වචන විය "අප්‍රමාදෙන සම්පාදෙථ" - නොසැළකිලිමත් නොවී කටයුතු කරන්න.</p>
+                
+                <blockquote class="hidden" style="font-size: 1.2em; font-style: italic; border-left: 4px solid var(--accent-saffron); padding-left: 15px;">
+                    "අප්‍රමාදො අමතපදං, පමාදො මච්චුනො පදං;<br>
+                    අප්‍පමත්තා න මීයන්ති, යෙ පමත්තා යථා මතා."
+                </blockquote>
+                
+                <p class="hidden">අප්‍රමාදය අමරණීය පදයයි. ප්‍රමාදය මරණීය පදයයි. නොසැළකිලිමත් නොවූවන් මිය නොයයි. සැළකිලිමත් වූවන් මළවුන් මෙන්ම වෙති.</p>
+            </section>
+            
+            <hr class="hidden" style="border: 0; border-top: 1px solid var(--accent-gold);">
+
+            <section class="hidden">
+                <h2>අප්‍රමාදයේ ප්‍රතිලාභ</h2>
+                <div class="path-container hidden">
+                    
+                    <div class="path-step hidden">
+                        <div class="step-header">
+                            <div class="step-title">1. සිහිය නිරන්තරයෙන් පවතී</div>
+                            <div class="step-icon">+</div>
+                        </div>
+                        <div class="step-content">
+                            <p>අප්‍රමාදයෙන් කටයුතු කරන්නෙකුගේ සිහිය සෑම මොහොතකම පැහැදිලිව පවතී.</p>
+                        </div>
+                    </div>
+
+                    <div class="path-step hidden">
+                        <div class="step-header">
+                            <div class="step-title">2. කුශල් කර්ම වර්ධනය වේ</div>
+                            <div class="step-icon">+</div>
+                        </div>
+                        <div class="step-content">
+                            <p>නොසැළකිලිමත් නොවී සිටින්නෙකු නිරන්තරයෙන් කුශල කර්ම කරයි.</p>
+                        </div>
+                    </div>
+
+                    <div class="path-step hidden">
+                        <div class="step-header">
+                            <div class="step-title">3. අකුශල් කර්මවලින් වැළකී සිටී</div>
+                            <div class="step-icon">+</div>
+                        </div>
+                        <div class="step-content">
+                            <p>අප්‍රමාදය තුළින් අකුශල කර්මවලින් ස්වයං ආරක්ෂාව ලැබේ.</p>
+                        </div>
+                    </div>
+
+                    <div class="path-step hidden">
+                        <div class="step-header">
+                            <div class="step-title">4. නිවන් මඟ ඉක්මන් වේ</div>
+                            <div class="step-icon">+</div>
+                        </div>
+                        <div class="step-content">
+                            <p>අප්‍රමාදය තුළින් නිවන් අවබෝධය කරා වේගවත් ගමනක් ලැබේ.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="hidden">
+                <h2>ප්‍රායෝගිකව අප්‍රමාදය වර්ධනය කරන්නේ කෙසේද?</h2>
+                <ul>
+                    <li>දිනපතා භාවනා පුරුද්ද පවත්වා ගැනීම</li>
+                    <li>කාය, වචී, මනෝ කර්ම සැම විටම නිරීක්ෂණය කිරීම</li>
+                    <li>ධර්ම දේශනා ඇසීම සහ කියවීම</li>
+                    <li>කල්‍යාණ මිත්‍රයන් සමඟ කාලය ගත කිරීම</li>
+                    <li>සෑම කාර්යයකම සිහිය පවත්වා ගැනීම</li>
+                </ul>
+                <div class="sadhu hidden">
+                    සාදු! සාදු!! සාදු!!!
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <div id="content-en" class="lang-content en">
+
+        <header class="header-quote hidden">
+            "Strive with diligence, O Bhikkhus..."
+            <div class="brand-name">- The Blessed One -</div>
+        </header>
+
+        <div class="main-content">
+            
+            <section class="hidden">
+                <h2>📌 Appamāda - Heedfulness</h2>
+                <p>The Buddha's last words were "Appamādena sampādetha" - Strive with diligence.</p>
+                
+                <blockquote class="hidden" style="font-size: 1.2em; font-style: italic; border-left: 4px solid var(--accent-saffron); padding-left: 15px;">
+                    "Heedfulness is the path to the Deathless. Heedlessness is the path to death.<br>
+                    The heedful die not. The heedless are as if dead already."
+                </blockquote>
+                
+                <p class="hidden">This verse emphasizes that those who practice with awareness live truly, while those who are heedless are like the dead.</p>
+            </section>
+            
+            <hr class="hidden" style="border: 0; border-top: 1px solid var(--accent-gold);">
+
+            <section class="hidden">
+                <h2>Benefits of Heedfulness</h2>
+                <div class="path-container hidden">
+                    
+                    <div class="path-step hidden">
+                        <div class="step-header">
+                            <div class="step-title">1. Constant Mindfulness</div>
+                            <div class="step-icon">+</div>
+                        </div>
+                        <div class="step-content">
+                            <p>Those who practice heedfulness maintain clear awareness at every moment.</p>
+                        </div>
+                    </div>
+
+                    <div class="path-step hidden">
+                        <div class="step-header">
+                            <div class="step-title">2. Growth of Wholesome Deeds</div>
+                            <div class="step-icon">+</div>
+                        </div>
+                        <div class="step-content">
+                            <p>A heedful person continuously performs wholesome actions.</p>
+                        </div>
+                    </div>
+
+                    <div class="path-step hidden">
+                        <div class="step-header">
+                            <div class="step-title">3. Protection from Unwholesome Deeds</div>
+                            <div class="step-icon">+</div>
+                        </div>
+                        <div class="step-content">
+                            <p>Through heedfulness, one gains self-protection from unwholesome actions.</p>
+                        </div>
+                    </div>
+
+                    <div class="path-step hidden">
+                        <div class="step-header">
+                            <div class="step-title">4. Faster Progress to Nibbāna</div>
+                            <div class="step-icon">+</div>
+                        </div>
+                        <div class="step-content">
+                            <p>Through heedfulness, one makes swift progress toward realizing Nibbāna.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="hidden">
+                <h2>How to Develop Heedfulness Practically?</h2>
+                <ul>
+                    <li>Maintain daily meditation practice</li>
+                    <li>Always observe bodily, verbal, and mental actions</li>
+                    <li>Listen to and read Dhamma teachings</li>
+                    <li>Spend time with good friends (kalyāṇamittā)</li>
+                    <li>Maintain mindfulness in every task</li>
+                </ul>
+                <div class="sadhu hidden">
+                    Sādhu! Sādhu!! Sādhu!!!
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+
+<script src="post.js"></script>
+</body>
+</html>

@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post 1: Half or Whole?</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="post.css">
+    <style>
+        .back-link {
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            z-index: 1001;
+            padding: 10px 20px;
+            background: linear-gradient(90deg, #FF9933 0%, #FFD700 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+        .back-link:hover {
+            transform: scale(1.05);
+        }
+    </style>
+    <script>
+        // Security check - redirect if not accessed from index
+        if (!sessionStorage.getItem('allowAccess') || sessionStorage.getItem('postId') !== 'day-1') {
+            window.location.href = '/index.html';
+        }
+        sessionStorage.removeItem('allowAccess');
+        sessionStorage.removeItem('postId');
+    </script>
+</head>
+<body>
+
+<a href="https://kalyanamitta.vercel.app/writings" class="back-link">← Back</a>
+
+<div class="controls">
+    <button class="toggle-btn" id="lang-toggle" title="Switch Language">En</button>
+    <button class="toggle-btn" id="mode-toggle" title="Toggle Mode">🌙</button>
+</div>
+
+<div class="container">
+
+    <div id="content-si" class="lang-content si">
+        
+        <header class="header-quote hidden">
+            "ආනන්ද, එසේ නොපවසන්න! මෙය සසුන් බඹසර හි අඩක් නොව, සම්පූර්ණයමයි..."
+            <div class="brand-name">- භාග්‍යවතුන්වහන්සේ -</div>
+        </header>
+
+        <div class="main-content">
+            
+            <section class="hidden">
+                <h2>📌 අඩක් ද? සම්පූර්ණයම ද?</h2>
+                <p>දිනක් ආනන්ද හිමියන් බුදුරජාණන් වහන්සේ වෙත පැමිණ, "ස්වාමීනී, මේ සසුන් බඹසර හි (නිවන් මඟින්) හරියටම අඩක් පවතින්නේ කල්‍යාණ මිත්‍රත්වය මතයි" යැයි පවසනවා.</p>
+                
+                <div class="circle-wrapper hidden" id="circle-toggle-si" title="Click to reveal the answer">
+                    <div class="circle-container" id="circle-si">
+                        <div class="circle-fill"></div>
+                        <div class="circle-text text-half">අඩක්</div>
+                        <div class="circle-text text-whole">සම්පූර්ණය</div>
+                    </div>
+                    <div class="click-prompt">(පිළිතුර දැනගැනීමට Click කරන්න)</div>
+                </div>
+                <p>එවිට භාග්‍යවතුන් වහන්සේ ආනන්ද හිමියන්ව නිවැරදි කරමින් මෙසේ වදාරන සේක:</p>
+                <blockquote class="hidden" style="font-size: 1.2em; font-style: italic; border-left: 4px solid var(--accent-saffron); padding-left: 15px;">
+                    "ආනන්ද, එසේ නොපවසන්න! ආනන්ද, එසේ නොපවසන්න! ආනන්ද, මේ මුළු මහත් සසුන් බඹසරම සම්පූර්ණයෙන්ම පවතින්නේ කල්‍යාණ මිත්‍රත්වය මතයි."
+                </blockquote>
+            </section>
+            
+            <hr class="hidden" style="border: 0; border-top: 1px solid var(--accent-gold);">
+
+            <section class="hidden">
+                <h2>සෝතාපත්ති අංග සතර</h2>
+                <p>අප සැවොම නිවන් මඟේ යාමට කැමැත්තෙමු. මේ මඟේ පළමු අදියර වන සෝතාපන්න භාවයට පත්වීමට නම් අංග සතරක් පිරිය යුතුයි. එම පථය මෙලෙසයි:</p>
+                <p class="citation" style="text-align: center; margin-bottom: 20px;">(සෝතාපත්ති අංග පිලිබඳ වැඩිදුර විස්තරයක් වෙනත් ලිපියකින් ගෙන ඒමට බලාපොරොත්තු වෙමු.)</p>
+
+                <div class="path-container hidden">
+                    
+                    <div class="path-step hidden">
+                        <div class="step-header">
+                            <div class="step-title">1. කල්‍යාණමිත්තතා</div>
+                            <div class="step-icon">+</div>
+                        </div>
+                        <div class="step-content">
+                            <p>පසේනදී කොසොල් රජතුමා පවා තේරුම් ගත් පරිදි, භාග්‍යවතුන් වහන්සේ දේශනා කළ මේ උතුම් ධර්මය පවතින්නේ කලණ මිතුරන් ඇත්තවුන්ට මිස, පවිටු මිතුරන් ඇත්තවුන්ට නොවේ.</p>
+                            <p>සිඟාලෝවාද සූත්‍රයට අනුව, සැබෑ කල්‍යාණ මිත්‍රයන් වර්ග සතරකි:</p>
+                            
+                            <h4>1. උපකාරක මිත්‍ර‍යා (The Helper)</h4>
+                            <ul>
+                                <li>මිතුරා ආරක්‍ෂා කරයි.</li>
+                                <li>මිතුරාගේ වස්තුව ආරක්‍ෂා කරයි.</li>
+                                <li>විපතේ දී පිහිට/රැකවරණය වේ.</li>
+                                <li>අවශ්‍යතා වලදී ධනය ලබා දෙයි.</li>
+                            </ul>
+
+                            <h4>2. සමාන සුඛදුඃඛ මිත්‍ර‍යා (The Friend in Joy and Sorrow)</h4>
+                            <ul>
+                                <li>තම රහස් මිතුරාට කියයි.</li>
+                                <li>මිතුරාගේ රහස් රකියි.</li>
+                                <li>විපතේ දී හැර නොයයි.</li>
+                                <li>මිතුරා වෙනුවෙන් ජීවිතය වුවද පරිත්‍යාග කිරීමට සූදානම්ය.</li>
+                            </ul>
+
+                            <h4>3. අර්ථඛ්‍යායි මිත්‍ර‍යා (The Mentor)</h4>
+                            <ul>
+                                <li>පාපයෙන් වළක්වයි.</li>
+                                <li>යහපතෙහි පිහිටුවයි.</li>
+                                <li>නොදත් දෑ කියා දෙයි.</li>
+                                <li>සුගතියට මඟ කියා දෙයි.</li>
+                            </ul>
+
+                            <h4>4. අනුකම්පක මිත්‍ර‍යා (The Compassionate Friend)</h4>
+                            <ul>
+                                <li>මිතුරාගේ පිරිහීම ගැන කණගාටු වෙයි.</li>
+                                <li>දියුණුව ගැන සතුටු වෙයි.</li>
+                                <li>මිතුරාට දොස් කියන්නන් වළක්වයි.</li>
+                                <li>ගුණ කියන්නවුන්ට පැසසීම කරයි.</li>
+                            </ul>
+                            <p class="citation">
+                                (උපුටා ගැනීම: මහාචාර්‍ය්‍ය රේරුකානේ චන්දවිමල මහානායක ස්ථවිරයන් වහන්සේගේ 'බෞද්ධයාගේ අත්පොත' ඇසුරෙනි.)
+                            </p>
+                            </div>
+                    </div>
+
+                    <div class="path-step hidden">
+                        <div class="step-header">
+                            <div class="step-title">2. සද්ධම්මස්සවනය</div>
+                            <div class="step-icon">+</div>
+                        </div>
+                        <div class="step-content">
+                            <p>කල්‍යාණ මිත්‍රයෙකු ඇසුරු කිරීම නිසා, අපට 'සැබෑ ධර්මය ඇසීමට' (සද්ධම්මස්සවනය) අවස්ථාව උදා වේ.</p>
+                        </div>
+                    </div>
+
+                    <div class="path-step hidden">
+                        <div class="step-header">
+                            <div class="step-title">3. යෝනිසෝමනසිකාරය</div>
+                            <div class="step-icon">+</div>
+                        </div>
+                        <div class="step-content">
+                            <p>සැබෑ ධර්මය ඇසීම නිසා, 'නුවණින් විමසීම' (යෝනිසෝමනසිකාරය) ඇති වේ.</p>
+                        </div>
+                    </div>
+
+                    <div class="path-step hidden">
+                        <div class="step-header">
+                            <div class="step-title">4. ධම්මානුධම්මපටිපදාව</div>
+                            <div class="step-icon">+</div>
+                        </div>
+                        <div class="step-content">
+                            <p>නුවණින් විමසීම නිසා, 'ධර්මයට අනුව පිළිපැදීම' (ධම්මානුධම්මපටිපදාව) සම්පූර්ණ වේ.</p>
+                        </div>
+                    </div>
+                </div>
+                <p class="hidden">එසේ නම්, සෝවාන් වීමේ දොරටුව විවෘත කරන යතුර ඇත්තේම කල්‍යාණ මිත්‍ර සේවනය තුළයි.</p>
+            </section>
+
+            <section class="hidden">
+                <p>එහෙයින්, අපගේ නිවන් මඟ සාර්ථක කර ගැනීමට, පාප මිත්‍රයන්ගේ ඇසුර දුරු කර, සැබෑ කල්‍යාණ මිතුරන්ම ඇසුරු කිරීමට අධිෂ්ඨාන කර ගනිමු!</p>
+                <div class="sadhu">
+                    සාදු! සාදු!! සාදු!!!
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <div id="content-en" class="lang-content en">
+
+        <header class="header-quote hidden">
+            "Ananda, do not say that! This is not half of the holy life, it is the *entirety*..."
+            <div class="brand-name">- The Blessed One -</div>
+        </header>
+
+        <div class="main-content">
+            
+            <section class="hidden">
+                <h2>📌 Half? Or Whole?</h2>
+                <p>One day, Ven. Ananda approached the Blessed One and said, "Lord, this is half of the holy life, that is, good friendship, good companionship, good comradeship."</p>
+                
+                <div class="circle-wrapper hidden" id="circle-toggle-en" title="Click to reveal the answer">
+                    <div class="circle-container" id="circle-en">
+                        <div class="circle-fill"></div>
+                        <div class="circle-text text-half">Half</div>
+                        <div class="circle-text text-whole">The Whole</div>
+                    </div>
+                    <div class="click-prompt">(Click to reveal the answer)</div>
+                </div>
+                <p>The Blessed One corrected him, saying:</p>
+                <blockquote class="hidden" style="font-size: 1.2em; font-style: italic; border-left: 4px solid var(--accent-saffron); padding-left: 15px;">
+                    "Do not say that, Ananda! Do not say that! This is the *entirety* of the holy life, Ananda, that is, good friendship, good companionship, good comradeship."
+                </blockquote>
+            </section>
+            
+            <hr class="hidden" style="border: 0; border-top: 1px solid var(--accent-gold);">
+
+            <section class="hidden">
+                <h2>The Four Factors of Stream-Entry</h2>
+                <p>We all wish to walk the path to Nibbana. To reach the first stage, Sotapatti (Stream-entry), four factors must be fulfilled. The path is as follows:</p>
+                <p class="citation" style="text-align: center; margin-bottom: 20px;">(We hope to bring a more detailed article on the Factors of Stream-Entry soon.)</p>
+
+                <div class="path-container hidden">
+                    
+                    <div class="path-step hidden">
+                        <div class="step-header">
+                            <div class="step-title">1. Association with Good Friends</div>
+                            <div class="step-icon">+</div>
+                        </div>
+                        <div class="step-content">
+                            <p>As even King Pasenadi of Kosala understood, this noble Dhamma taught by the Blessed One is for one who has good friends, not for one who has bad friends.</p>
+                            <p>According to the Sigalovada Sutta, there are four types of true good friends:</p>
+                            
+                            <h4>1. The Helper</h4>
+                            <ul>
+                                <li>Protects the friend when they are heedless.</li>
+                                <li>Protects the friend's property.</li>
+                                <li>Is a refuge in times of danger.</li>
+                                <li>Provides help (double the amount) when needed.</li>
+                            </ul>
+
+                            <h4>2. The Friend in Happiness and Sorrow</h4>
+                            <ul>
+                                <li>Tells their secrets to the friend.</li>
+                                <li>Guards the friend's secrets.</li>
+                                <li>Does not abandon the friend in misfortune.</li>
+                                <li>Is willing to sacrifice even their life for the friend.</li>
+                            </ul>
+
+                            <h4>3. The Mentor (Who Points Out What is Beneficial)</h4>
+                            <ul>
+                                <li>Restrains the friend from evil.</li>
+                                <li>Establishes them in good.</li>
+                                <li>Teaches them what they do not know.</li>
+                                <li>Shows them the path to a good destination.</li>
+                            </ul>
+
+                            <h4>4. The Compassionate Friend</h4>
+                            <ul>
+                                <li>Grieves at the friend's decline.</li>
+                                <li>Rejoices in their progress.</li>
+                                <li>Prevents others from speaking ill of the friend.</li>
+                                <li>Praises those who speak well of them.</li>
+                            </ul>
+                            <p class="citation">
+                                (Adapted from 'The Buddhist's Handbook' by Ven. Rerukane Chandavimala Mahā Nāyaka Thero.)
+                            </p>
+                            </div>
+                    </div>
+
+                    <div class="path-step hidden">
+                        <div class="step-header">
+                            <div class="step-title">2. Listening to the True Dhamma</div>
+                            <div class="step-icon">+</div>
+                        </div>
+                        <div class="step-content">
+                            <p>Because of associating with a good friend, we get the opportunity to 'Listen to the True Dhamma' (Saddhammassavanam).</p>
+                        </div>
+                    </div>
+
+                    <div class="path-step hidden">
+                        <div class="step-header">
+                            <div class="step-title">3. Wise Attention</div>
+                            <div class="step-icon">+</div>
+                        </div>
+                        <div class="step-content">
+                            <p>Because of listening to the True Dhamma, 'Wise Attention' (Yonisomanasikāra) arises.</p>
+                        </div>
+                    </div>
+
+                    <div class="path-step hidden">
+                        <div class="step-header">
+                            <div class="step-title">4. Practice in accordance with the Dhamma</div>
+                            <div class="step-icon">+</div>
+                        </div>
+                        <div class="step-content">
+                            <p>Because of wise attention, the 'Practice in accordance with the Dhamma' (Dhammānudhammapaṭipadā) is fulfilled.</p>
+                        </div>
+                    </div>
+                </div>
+                <p class="hidden">Therefore, the key that unlocks the door to Nibbana is found in associating with good friends.</p>
+            </section>
+
+            <section class="hidden">
+                <p>Therefore, to succeed on our path, let us resolve to abandon bad friends and cherish the company of true, good friends.</p>
+                <div class="sadhu">
+                    Sādhu! Sādhu!! Sādhu!!!
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+
+<script src="post.js"></script>
+</body>
+</html>

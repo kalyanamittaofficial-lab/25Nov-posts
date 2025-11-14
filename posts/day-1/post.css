@@ -1,0 +1,392 @@
+/* --- 1. New Color Theme (Buddhism Colors) --- */
+:root {
+    /* Light Mode */
+    --light-bg: #FCFCFC; /* Pure White */
+    --light-text: #1a1a1a; /* Dark Black */
+    --light-card: #FFFBF5; /* Very light saffron-tint */
+    --accent-saffron: #FF9933; /* Monk Robe Orange/Saffron */
+    --accent-gold: #FFD700; /* Gold */
+    --accent-gold-darker: #E6C300;
+    --light-shadow: rgba(0, 0, 0, 0.1);
+
+    /* Dark Mode */
+    --dark-bg: #1a1a1a;
+    --dark-text: #E0E0E0;
+    --dark-card: #2a2a2a;
+    --dark-shadow: rgba(0, 0, 0, 0.5);
+}
+
+/* --- 2. Dark Mode Setup --- */
+body.dark-mode {
+    --light-bg: var(--dark-bg);
+    --light-text: var(--dark-text);
+    --light-card: var(--dark-card);
+    --light-shadow: var(--dark-shadow);
+}
+
+/* Note: The 'main.js' loader will load this file *after* the 
+   shell's 'body' tag is already on the page. 
+   These body rules will correctly override the shell's default.
+*/
+body {
+    font-family: 'Noto Sans Sinhala', sans-serif;
+    background-color: var(--light-bg);
+    color: var(--light-text);
+    line-height: 1.9;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    width: 100%; /* Ensures it shrinks below 800px */
+    box-sizing: border-box; /* Includes padding in the width calculation */
+}
+
+/* --- 3. Control Toggles (Unchanged) --- */
+.controls {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    display: flex;
+    gap: 10px;
+    z-index: 1000;
+}
+
+.toggle-btn {
+    background-color: var(--light-card);
+    border: 1px solid var(--accent-gold-darker);
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px var(--light-shadow);
+    transition: all 0.3s ease;
+    color: var(--accent-saffron);
+}
+.toggle-btn:hover {
+    transform: scale(1.1);
+    border-color: var(--accent-saffron);
+}
+
+/* --- 4. Content Styling --- */
+.header-quote {
+    font-family: 'Merriweather', 'Noto Sans Sinhala', serif;
+    font-size: 1.8em;
+    font-weight: 700;
+    text-align: center;
+    color: var(--accent-saffron);
+    padding: 40px 20px;
+    margin: 60px 0 20px 0;
+    border-radius: 10px;
+    background-color: var(--light-card);
+    border: 1px solid var(--accent-gold);
+    box-shadow: 0 4px 15px var(--light-shadow);
+}
+
+/* NEW: Brand Name */
+.brand-name {
+    font-size: 0.7em;
+    font-weight: 400;
+    color: var(--accent-gold-darker);
+    margin-top: 10px;
+    letter-spacing: 1px;
+    font-family: 'Merriweather', serif;
+}
+
+.main-content {
+    background-color: var(--light-card);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px var(--light-shadow);
+    overflow: hidden;
+}
+
+h2 {
+    font-family: 'Merriweather', 'Noto Sans Sinhala', serif;
+    font-size: 1.8em;
+    color: var(--accent-saffron);
+    border-bottom: 2px solid var(--accent-gold);
+    padding-bottom: 10px;
+}
+
+h4 { /* Added for new subheadings */
+    font-family: 'Merriweather', 'Noto Sans Sinhala', serif;
+    color: var(--accent-saffron);
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+p, li {
+    font-size: 1.1em;
+}
+
+ul { /* Added for new lists */
+    list-style-type: disc;
+    padding-left: 30px;
+}
+
+.sadhu {
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: 700;
+    color: var(--accent-saffron);
+    margin-top: 40px;
+}
+
+/* --- 5. NEW: Simple "Half vs Whole" Animation --- */
+.circle-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 40px 0;
+    padding: 20px;
+    background-color: var(--light-card);
+    border: 1px dashed var(--accent-gold);
+    border-radius: 10px;
+    cursor: pointer;
+    text-align: center;
+}
+.circle-container {
+    width: 200px;
+    height: 200px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 4px solid var(--accent-gold);
+    background-color: var(--light-bg);
+    overflow: hidden; /* Important for clip-path */
+}
+.circle-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--accent-gold);
+    z-index: 1;
+    /* Start as half */
+    clip-path: polygon(0% 0%, 50% 0%, 50% 100%, 0% 100%);
+    transition: clip-path 0.8s ease-in-out;
+}
+.circle-container.open .circle-fill {
+    /* Animate to full */
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+}
+.circle-text {
+    position: absolute;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: var(--accent-saffron);
+    transition: opacity 0.5s ease-out;
+    z-index: 10;
+}
+.circle-text.text-half { opacity: 1; }
+.circle-text.text-whole { opacity: 0; color: #333; } /* Dark text on gold */
+
+.circle-container.open .text-half { opacity: 0; }
+.circle-container.open .text-whole { opacity: 1; }
+
+.circle-wrapper .click-prompt {
+    margin-top: 15px;
+    font-style: italic;
+    opacity: 0.7;
+}
+
+
+/* --- 6. ADVANCED ANIMATION: The Path (Accordion) --- */
+.path-container {
+    position: relative;
+    padding: 20px 0;
+    margin-top: 30px;
+    /* Creates the vertical "Path" line */
+    border-left: 3px dashed var(--accent-gold);
+    margin-left: 20px;
+}
+
+.path-step {
+    margin-bottom: 20px;
+    position: relative;
+    left: -11px; /* Center the dot on the line */
+}
+
+.step-header {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    background-color: var(--light-card);
+    border-radius: 50px;
+    padding: 5px;
+    border: 2px solid var(--accent-gold);
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px var(--light-shadow);
+}
+.step-header:hover {
+    background-color: var(--accent-saffron);
+    color: white;
+    border-color: var(--accent-saffron);
+}
+/* The dot on the path */
+.step-header::before {
+    content: '';
+    width: 15px;
+    height: 15px;
+    background-color: var(--light-bg);
+    border: 4px solid var(--accent-saffron);
+    border-radius: 50%;
+    margin-right: 15px;
+    transition: all 0.3s ease;
+}
+.step-header:hover::before {
+    background-color: var(--accent-gold);
+}
+
+.step-title {
+    flex-grow: 1;
+    font-size: 1.2em;
+    font-weight: 700;
+}
+
+/* The + / - icon */
+.step-icon {
+    font-size: 2em;
+    font-weight: bold;
+    padding-right: 20px;
+    transition: transform 0.3s ease;
+}
+.step-header.active .step-icon {
+    transform: rotate(45deg);
+}
+
+.step-content {
+    /* This is the magic for the accordion animation */
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-out;
+    padding-left: 45px; /* Align with header text */
+    margin-top: 10px;
+}
+
+/* --- 7. Scroll Animations --- */
+.hidden {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    visibility: hidden;
+}
+.visible {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+}
+
+/* --- 8. Language Handling --- */
+.lang-content.en {
+    display: none; /* Hide English by default */
+}
+
+/* --- 9. NEW: Footer --- */
+footer {
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid var(--accent-gold);
+    font-size: 0.9em;
+    opacity: 0.7;
+}
+
+/* Helper class for citation */
+.citation {
+    font-size: 0.9em; 
+    opacity: 0.8; 
+    border-top: 1px dashed var(--accent-gold); 
+    padding-top: 10px;
+    margin-top: 15px;
+}
+
+/* --- 10. Responsive Design (For All Screens) --- */
+@media (max-width: 600px) {
+    body {
+        line-height: 1.7; /* Tighter line height for small screens */
+    }
+
+    .container {
+        padding: 15px; /* Less padding on mobile */
+    }
+
+    .controls {
+        top: 10px;
+        right: 10px;
+        gap: 8px;
+    }
+
+    .toggle-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1em;
+    }
+
+    .header-quote {
+        font-size: 1.4em;
+        padding: 25px 15px;
+        margin-top: 50px; /* Make space for controls */
+    }
+
+    .main-content {
+        padding: 20px;
+    }
+
+    h2 {
+        font-size: 1.5em;
+    }
+
+    p, li {
+        font-size: 1em; /* Base font size */
+    }
+    
+    h4 {
+        font-size: 1.1em;
+    }
+
+    .circle-wrapper {
+        margin: 20px 0;
+        padding: 15px;
+    }
+
+    .circle-container {
+        width: 150px;
+        height: 150px;
+    }
+    .circle-text {
+        font-size: 1.2em;
+    }
+    
+    .path-container {
+        margin-left: 10px; /* Reduce indent */
+        padding: 10px 0;
+    }
+    
+    .path-step {
+        left: -11px; /* Keep this for the dot alignment */
+    }
+    
+    .step-header::before {
+        margin-right: 10px; /* Less space */
+    }
+    
+    .step-title {
+        font-size: 1.1em;
+    }
+    
+    .step-content {
+        padding-left: 25px; /* Align with reduced indent */
+    }
+}
