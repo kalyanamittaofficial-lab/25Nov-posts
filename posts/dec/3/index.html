@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>බුදු දහමේ ප්‍රායෝගික මාර්ගය</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f9fc;
+            min-height: 100vh;
+        }
+        .infographic-card {
+            background-color: #ffffff;
+            transition: all 0.4s ease-in-out;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+        .infographic-card:hover {
+            transform: translateY(-5px) scale(1.01);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        .icon-circle {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            flex-shrink: 0;
+            border: 3px solid;
+        }
+        .step-line {
+            background-color: #cbd5e1;
+            width: 2px;
+            height: 40px;
+            margin: 0 auto;
+        }
+        .expandable-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out;
+        }
+        .expanded {
+            max-height: 500px; /* Large enough value to contain content */
+            padding-top: 1rem;
+        }
+        .rotate-icon {
+            transition: transform 0.3s ease;
+        }
+        .rotate-icon.rotated {
+            transform: rotate(180deg);
+        }
+        /* Custom Styles for Simulation */
+        .building-block {
+            padding: 0.5rem 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            font-weight: bold;
+            transition: all 0.5s ease;
+        }
+        .block-sīla { background-color: #d1fae5; color: #0e9f6e; border: 2px solid #0e9f6e; }
+        .block-samādhi { background-color: #fef3c7; color: #f59e0b; border: 2px solid #f59e0b; }
+        .block-paññā { background-color: #fee2e2; color: #ef4444; border: 2px solid #ef4444; }
+        .block-empty { background-color: #e5e7eb; color: #9ca3af; }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-buddha': '#0e9f6e', /* Calming Green */
+                        'secondary-gold': '#f59e0b', /* Subtle Gold */
+                        'bg-light': '#f7f9fc',
+                        'danger-fire': '#ef4444', /* Red for Dosa/Fire */
+                    }
+                }
+            }
+        }
+
+        // --- Interactivity (Expand/Collapse) ---
+        function toggleExample(id) {
+            const content = document.getElementById(id);
+            const icon = document.getElementById(`icon-${id}`);
+            
+            content.classList.toggle('expanded');
+            icon.classList.toggle('rotated');
+        }
+
+        // --- Yonisomanasikara Mind Filter Simulation (Point 1) ---
+        function runMindFilter() {
+            const input = document.getElementById('eventInput').value.trim();
+            const output = document.getElementById('responseOutput');
+
+            if (!input) {
+                output.innerHTML = `<span class="text-danger-fire font-bold">⚠️ සිදුවීමක් ඇතුළු කරන්න.</span>`;
+                return;
+            }
+
+            // Simulate Yonisomanasikara (Wise Attention) filtering the event.
+            const filterProcess = `
+                <ul class="list-disc list-inside space-y-1">
+                    <li class="text-primary-buddha">සිදුවීම (<b>${input}</b>) ස්ථිර ද? - <b>අනිත්‍යයි</b>.</li>
+                    <li class="text-primary-buddha">කෝපය/දුක ඇති වූයේ සිදුවීම නිසා ද? - <b>නැත, මාගේ ප්‍රතිචාරය නිසාය</b>.</li>
+                    <li class="text-primary-buddha">මෙය අල්ලාගෙන සිටීමෙන් ප්‍රයෝජනයක් තිබේ ද? - <b>නැත, තව දුරටත් දුක ඇතිවේ</b>.</li>
+                </ul>
+            `;
+
+            output.innerHTML = `
+                <div class="border border-green-300 bg-green-50 p-3 rounded-lg">
+                    ${filterProcess}
+                    <p class="mt-2 font-bold text-primary-buddha">අවසාන ප්‍රතිචාරය: සිදුවීම මාගේ පාලනයෙන් තොර වුවත්, ප්‍රතිචාරය මාගේ පාලනය යටතේ පවතී. සන්සුන්ව සිටින්න.</p>
+                </div>
+            `;
+        }
+        
+        // --- Anupubba Patipada Simulation (Point 2) ---
+        let stepsCompleted = { sīla: false, samādhi: false, paññā: false };
+        let currentStatus = 0; // 0: Start, 1: Sīla, 2: Samādhi, 3: Paññā (Success)
+
+        function buildStep(step) {
+            const statusDiv = document.getElementById('buildingStatus');
+            const paññāBlock = document.getElementById('block-paññā');
+            const samādhiBlock = document.getElementById('block-samādhi');
+            const sīlaBlock = document.getElementById('block-sīla');
+
+            if (step === 'sīla' && currentStatus === 0) {
+                stepsCompleted.sīla = true;
+                currentStatus = 1;
+                sīlaBlock.classList.remove('block-empty');
+                sīlaBlock.classList.add('block-sīla');
+                statusDiv.innerHTML = `<span class="text-primary-buddha font-bold">✅ සීලය පිහිටුවා ඇත. දැන් සමාධියට යන්න.</span>`;
+            } else if (step === 'samādhi' && currentStatus === 1) {
+                stepsCompleted.samādhi = true;
+                currentStatus = 2;
+                samādhiBlock.classList.remove('block-empty');
+                samādhiBlock.classList.add('block-samādhi');
+                statusDiv.innerHTML = `<span class="text-secondary-gold font-bold">✅ සමාධිය වර්ධනයයි. ප්‍රඥාවට සූදානම්.</span>`;
+            } else if (step === 'paññā' && currentStatus === 2) {
+                stepsCompleted.paññā = true;
+                currentStatus = 3;
+                paññāBlock.classList.remove('block-empty');
+                paññāBlock.classList.add('block-paññā');
+                statusDiv.innerHTML = `<span class="text-green-600 font-bold">🎉 මාර්ගය සම්පූර්ණයි!</span>`;
+            } else if (step === 'sīla' && currentStatus !== 0) {
+                 statusDiv.innerHTML = `<span class="text-gray-500 font-bold">🛑 පදනම දැනටමත් සකසා ඇත.</span>`;
+            } else {
+                // Logic for skipping steps
+                const skippedStep = (step === 'samādhi' && currentStatus === 0) ? 'සීලය (පදනම)' : 
+                                    (step === 'paññā' && currentStatus < 2) ? 'සමාධිය (බිත්තිය)' : '';
+                
+                statusDiv.innerHTML = `
+                    <span class="text-danger-fire font-bold">❌ වැරදි පියවර!</span>
+                    <p class="text-sm text-gray-700">පියවර ${skippedStep} මගහැරීම නිසා මානසික ගොඩනැගිල්ල අස්ථාවරයි. නිවැරදි අනුපිළිවෙල අනුගමනය කරන්න.</p>
+                `;
+            }
+        }
+
+        function resetBuilding() {
+            stepsCompleted = { sīla: false, samādhi: false, paññā: false };
+            currentStatus = 0;
+            document.getElementById('buildingStatus').innerHTML = `<span class="text-gray-500">පහළින් ඇති බොත්තම් භාවිත කර ගොඩනැගිල්ල සකසන්න.</span>`;
+            document.getElementById('block-paññā').className = 'building-block block-empty';
+            document.getElementById('block-samādhi').className = 'building-block block-empty';
+            document.getElementById('block-sīla').className = 'building-block block-empty';
+        }
+
+        // --- Niværadi Aramuṇā Simulation (Point 3) ---
+        function analyzeIntention() {
+            const intention = document.getElementById('intentionInput').value;
+            const output = document.getElementById('intentionOutput');
+            let analysis = '';
+            let colorClass = 'text-gray-700';
+            
+            if (intention.toLowerCase().includes('දුක අඩු')) {
+                analysis = 'නිවැරදි අරමුණ (Yoga): ධර්මයේ සැබෑ අරමුණ දුක්ඛය නිරෝධ කිරීමයි.';
+                colorClass = 'text-primary-buddha font-extrabold';
+            } else if (intention.toLowerCase().includes('ප්‍රසිද්ධ')) {
+                analysis = 'වැරදි අරමුණ (Ayoga): මමත්වය (Ego) වැඩිවීමෙන් දුක වැඩිවේ.';
+                colorClass = 'text-danger-fire font-extrabold';
+            } else if (intention.toLowerCase().includes('දැනුම')) {
+                analysis = 'මධ්‍යස්ථ: ධර්ම දැනුම ප්‍රයෝජනවත් නමුත්, අරමුණ විය යුත්තේ ප්‍රායෝගික විමුක්තියයි.';
+                colorClass = 'text-secondary-gold font-extrabold';
+            } else {
+                 analysis = 'ඔබේ අරමුණ ඇතුළු කරන්න (උදා: දුක අඩු කිරීම, ප්‍රසිද්ධ වීම).';
+            }
+
+            output.innerHTML = `<p class="${colorClass} text-lg">${analysis}</p>`;
+        }
+    </script>
+</head>
+<body class="p-4 sm:p-8 flex justify-center">
+
+    <!-- Infographic Container -->
+    <div class="max-w-4xl w-full bg-white shadow-2xl rounded-3xl overflow-hidden p-6 md:p-12 border-t-8 border-primary-buddha">
+
+        <!-- Header and Introduction -->
+        <header class="text-center mb-12">
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-gray-800 leading-snug">
+                💡 බුදු දහම යනු දර්ශනයක් ද? ප්‍රායෝගික ක්‍රමවේදයක් ද?
+            </h1>
+            <p class="mt-4 text-xl text-gray-600 font-medium">
+                ජීවිතය නිවන ප්‍රායෝගික ක්‍රමවේදය අද අපි පාවිච්චි කරන්නේ නිවැරදි විදියටද?
+            </p>
+            <div class="mt-8 p-4 bg-primary-buddha/10 rounded-2xl font-bold text-primary-buddha border-2 border-primary-buddha/40 inline-block shadow-inner">
+                ප්‍රධාන වෙනස: දේශනාව > දුක් නිවන ප්‍රායෝගික මෙවලමක්
+            </div>
+        </header>
+
+        <!-- Main 3 Points Section -->
+        <section class="space-y-16">
+            <h2 class="text-3xl font-bold text-center text-gray-700 mb-10 border-b pb-4">අප නිතරම අමතක කරන අනිවාර්ය කරුණු 03</h2>
+
+            <!-- Point 1: යෝනිසෝමනසිකාරය (නුවණින් විමසීම) - UNCHANGED CONTENT, IMPROVED SIMULATION -->
+            <div class="infographic-card p-8 rounded-2xl border-l-8 border-primary-buddha shadow-lg">
+                <div class="flex items-start md:items-center space-x-6 mb-4">
+                    <div class="icon-circle bg-primary-buddha/10 text-primary-buddha border-primary-buddha">
+                        <!-- Icon: Brain/Mind analyzing -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 18a4 4 0 0 0 4-4c0-2-3-2-3-4a2 2 0 0 1 2-2 2 2 0 0 1 2 2h3a6 6 0 0 0-6-6c-3.3 0-6 2.7-6 6 0 4 3 4 3 6a2 2 0 0 1-2 2 2 2 0 0 1-2-2H2a6 6 0 0 0 6 6c3.3 0 6-2.7 6-6z"/></svg>
+                    </div>
+                    <div>
+                        <p class="text-sm font-light text-gray-500">පළමු පියවර</p>
+                        <h3 class="text-2xl font-bold text-gray-900 leading-tight">1. යෝනිසෝමනසිකාරය</h3>
+                        <p class="text-base text-primary-buddha font-semibold">(නුවණින් විමසීම)</p>
+                    </div>
+                </div>
+                
+                <p class="mt-4 text-gray-700 leading-relaxed">
+                    ධර්මය යනු කටපාඩම් කරන්න ඕන දෙයක් නෙවෙයි, තමන්ගේ හිත ඇතුළේ ප්‍රශ්න විසඳගන්න පාවිච්චි කරන්න ඕන **Tool එකක්**.
+                </p>
+                
+                <!-- Interactivity Button 1 (Real World) -->
+                <button onclick="toggleExample('example-1')" class="mt-4 flex items-center text-sm font-semibold text-primary-buddha hover:text-primary-buddha/80 transition-colors duration-300">
+                    සැබෑ ලෝක උදාහරණ බලන්න
+                    <svg id="icon-example-1" class="ml-2 w-4 h-4 rotate-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                </button>
+
+                <!-- Expandable Real-World Example -->
+                <div id="example-1" class="expandable-content bg-gray-50 rounded-lg p-0 mt-2 border border-gray-200">
+                    <p class="text-sm text-gray-700 font-medium p-4">
+                        <span class="font-bold text-primary-buddha">සැබෑ ලෝක උදාහරණය:</span> රැකියාවේදී සගයෙකුගෙන් විවේචනයක් එල්ල වූ විට, වහාම කෝපවීම (අයෝනිසෝමනසිකාරය) වෙනුවට, "මෙම විවේචනයට හේතුව මා තුළ පවතින්නක් ද? නැතිනම් එය ඔවුන්ගේම ගැටලුවක් ද?" යනුවෙන් නුවණින් විමසීම. මෙම නුවණින් විමසීම තුළින් ක්ෂණික කෝපය (දුක්ඛය) නිවා දැමීමට හැකියාව ලැබේ. ධර්මය මෙවලමක් ලෙස භාවිත කරන්නේ එලෙසයි.
+                    </p>
+                </div>
+
+                <!-- Interactivity Button 2 (Tripitaka) -->
+                <button onclick="toggleExample('example-1-tripitaka')" class="mt-4 flex items-center text-sm font-semibold text-primary-buddha hover:text-primary-buddha/80 transition-colors duration-300">
+                    ත්‍රිපිටක උදාහරණ බලන්න (කාලාම සූත්‍රය)
+                    <svg id="icon-example-1-tripitaka" class="ml-2 w-4 h-4 rotate-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                </button>
+
+                <!-- Expandable Tripitaka Example -->
+                <div id="example-1-tripitaka" class="expandable-content bg-gray-50 rounded-lg p-0 mt-2 border border-gray-200">
+                    <p class="text-sm text-gray-700 font-medium p-4">
+                        <span class="font-bold text-primary-buddha">ත්‍රිපිටක උදාහරණය:</span> **කාලාම සූත්‍රය** යනු යෝනිසෝමනසිකාරයේ විශිෂ්ටතම නිදසුනයි. බුදුරජාණන් වහන්සේ කාලාමවරුන්ට අවධාරණය කළේ: "අනුශ්‍රවයෙන් හෝ ගුරු පරම්පරාවෙන් ලැබුණා කියා, ග්‍රන්ථවල ලියා තිබෙනවා කියා, හෝ ගෞරවනීය ගුරුවරයෙක් කීවා කියා කිසිවක් එලෙසම පිළිනොගන්න. ඒවා නුවණින් විමසා, ඔබට සහ අන්‍යයන්ට යහපත් බව හැඟේ නම් පමණක් පිළිගන්න." මෙය ධර්මය දර්ශනයක් නොව, ප්‍රායෝගික පරීක්ෂණ ක්‍රමවේදයක් බව පෙන්වයි.
+                    </p>
+                </div>
+                
+                <!-- Innovative Simulation/Chart -->
+                <div class="mt-8 pt-4 border-t border-gray-200">
+                    <h4 class="text-lg font-bold text-gray-700 mb-4">🧠 නුවණින් විමසීමේ ක්‍රියාවලිය (අන්තර්ක්‍රියාකාරී සිමියුලේෂන්)</h4>
+                    <div class="bg-white p-4 rounded-xl border border-gray-300 shadow-inner">
+                        <label for="eventInput" class="block text-sm font-medium text-gray-700 mb-2">බාහිර සිදුවීමක් ඇතුළු කරන්න (උදා: "මට දොස් කිව්වා")</label>
+                        <input type="text" id="eventInput" placeholder="සිදුවීම..." class="w-full p-2 border border-gray-300 rounded-lg focus:ring-primary-buddha focus:border-primary-buddha">
+                        <button onclick="runMindFilter()" class="mt-3 w-full p-2 bg-primary-buddha text-white font-semibold rounded-lg hover:bg-primary-buddha/90 transition-colors">
+                            යෝනිසෝමනසිකාර පෙරහන යොදන්න
+                        </button>
+                        
+                        <div class="mt-4 p-3 border-t border-gray-200">
+                            <h5 class="font-bold text-base text-gray-800">✅ අභ්‍යන්තර ප්‍රතිචාරය:</h5>
+                            <p id="responseOutput" class="mt-2 text-sm text-gray-600 italic">මෙහි ප්‍රතිඵලය දිස්වනු ඇත.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Point 2: අනුපුබ්බ ප්‍රතිපදාව (පියවරෙන් පියවර යන ගමන) - UPDATED -->
+            <div class="infographic-card p-8 rounded-2xl border-l-8 border-secondary-gold shadow-lg">
+                <div class="flex items-start md:items-center space-x-6 mb-8">
+                    <div class="icon-circle bg-secondary-gold/10 text-secondary-gold border-secondary-gold">
+                        <!-- Icon: Steps/Flow -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10h18"/><path d="M3 14h14"/><path d="M3 18h10"/><path d="M3 6h22"/></svg>
+                    </div>
+                    <div>
+                        <p class="text-sm font-light text-gray-500">දෙවන පියවර</p>
+                        <h3 class="text-2xl font-bold text-gray-900 leading-tight">2. අනුපුබ්බ ප්‍රතිපදාව</h3>
+                        <p class="text-base text-secondary-gold font-semibold">(පියවරෙන් පියවර යන ගමන)</p>
+                    </div>
+                </div>
+                
+                <p class="mt-4 text-gray-700 leading-relaxed mb-6 border-b pb-4">
+                    මහා මුහුද ගැඹුරු වෙන්නේ වෙරළේ ඉඳන් ටිකෙන් ටික. අඩිතාලම නැතුව නිවන් දකින්න බෑ.
+                </p>
+
+                <!-- Steps Flow (Visual Guide) -->
+                <div class="space-y-4">
+                    <div class="flex items-start">
+                        <div class="flex flex-col items-center mr-4"><div class="w-8 h-8 rounded-full bg-primary-buddha flex items-center justify-center text-white font-bold text-sm">1</div><div class="step-line"></div></div>
+                        <div><h4 class="font-bold text-lg text-primary-buddha">සීලය (මූලික හික්මීම)</h4><p class="text-sm text-gray-600">මානසික ගොඩනැගිල්ලේ පදනම.</p></div>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="flex flex-col items-center mr-4"><div class="w-8 h-8 rounded-full bg-secondary-gold flex items-center justify-center text-white font-bold text-sm">2</div><div class="step-line"></div></div>
+                        <div><h4 class="font-bold text-lg text-secondary-gold">සමාධිය (සිත එකඟ කිරීම)</h4><p class="text-sm text-gray-600">ගොඩනැගිල්ලේ බිත්ති.</p></div>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="flex flex-col items-center mr-4"><div class="w-8 h-8 rounded-full bg-danger-fire flex items-center justify-center text-white font-bold text-sm">3</div></div>
+                        <div><h4 class="font-bold text-lg text-danger-fire">ප්‍රඥාව (නිවැරදි අවබෝධය)</h4><p class="text-sm text-gray-600">වහලය සහ නිමාව.</p></div>
+                    </div>
+                    <!-- Interactivity Button 1 (Tripitaka) -->
+                    <button onclick="toggleExample('example-2-tripitaka')" class="mt-4 flex items-center text-sm font-semibold text-secondary-gold hover:text-secondary-gold/80 transition-colors duration-300">
+                        ත්‍රිපිටක උදාහරණ බලන්න (මහා අස්සපුර සූත්‍රය)
+                        <svg id="icon-example-2-tripitaka" class="ml-2 w-4 h-4 rotate-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                    </button>
+
+                    <!-- Expandable Tripitaka Example 2 -->
+                    <div id="example-2-tripitaka" class="expandable-content bg-gray-50 rounded-lg p-0 mt-2 border border-gray-200">
+                        <p class="text-sm text-gray-700 font-medium p-4">
+                            <span class="font-bold text-secondary-gold">ත්‍රිපිටක උදාහරණය:</span> **මහා අස්සපුර සූත්‍රය** තුළ බුදුරජාණන් වහන්සේ පැහැදිලි කරන්නේ යම්කිසි භික්ෂුවක් "මම සීලයෙන් යුක්තයි" කියා සිතමින් ආඩම්බර වුවහොත්, ඔහු සැබෑ ශ්‍රමණ ධර්මයේ සිටි අයෙකු නොවන බවයි. මෙයින් පෙන්වන්නේ සීලය යනු නිවන් මාර්ගයේ ආරම්භක පියවරක් පමණක් බවත්, එහිම නතර වී සිටීම මාර්ගය නොවන බවත්ය. එය හරියට ගමනක් යාමට අශ්වයෙකු සූදානම් කිරීම මිස, අශ්වයා පිට නැඟී ගමන ආරම්භ කිරීම නොවේ.
+                        </p>
+                    </div>
+
+                    <!-- Innovative Simulation/Chart -->
+                    <div class="mt-8 pt-4 border-t border-gray-200">
+                        <h4 class="text-lg font-bold text-gray-700 mb-4">🏗️ මානසික ගොඩනැගිලි සිමියුලේෂන්</h4>
+                        <div class="bg-gray-100 p-4 rounded-xl border border-gray-300 shadow-inner">
+                            <!-- Building Structure -->
+                            <div id="building" class="flex flex-col items-center mb-4">
+                                <div id="block-paññā" class="building-block block-empty w-3/5">ප්‍රඥාව</div>
+                                <div id="block-samādhi" class="building-block block-empty w-4/5">සමාධිය</div>
+                                <div id="block-sīla" class="building-block block-empty w-full">සීලය (පදනම)</div>
+                            </div>
+
+                            <p id="buildingStatus" class="text-center mb-4 text-sm text-gray-500">පහළින් ඇති බොත්තම් භාවිත කර ගොඩනැගිල්ල සකසන්න.</p>
+
+                            <!-- Buttons -->
+                            <div class="flex justify-center space-x-2 flex-wrap">
+                                <button onclick="buildStep('sīla')" class="p-2 bg-primary-buddha text-white text-sm rounded-lg hover:bg-primary-buddha/90 transition-colors">1. සීලය</button>
+                                <button onclick="buildStep('samādhi')" class="p-2 bg-secondary-gold text-white text-sm rounded-lg hover:bg-secondary-gold/90 transition-colors">2. සමාධිය</button>
+                                <button onclick="buildStep('paññā')" class="p-2 bg-danger-fire text-white text-sm rounded-lg hover:bg-danger-fire/90 transition-colors">3. ප්‍රඥාව</button>
+                                <button onclick="resetBuilding()" class="p-2 bg-gray-500 text-white text-sm rounded-lg hover:bg-gray-600 transition-colors">නැවත පටන් ගන්න</button>
+                            </div>
+                            <p class="mt-2 text-xs text-gray-500 text-center">නිවැරදි අනුපිළිවෙල (1 > 2 > 3) අනුගමනය කරන්න. අනුපිළිවෙල මඟහැරීමෙන් අස්ථාවරත්වය පෙන්වයි.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Point 3: නිවැරදි අරමුණ (ධර්මයේ සැබෑ භාවිතය) - UPDATED -->
+            <div class="infographic-card p-8 rounded-2xl border-l-8 border-danger-fire shadow-lg">
+                <div class="flex items-start md:items-center space-x-6 mb-4">
+                    <div class="icon-circle bg-danger-fire/10 text-danger-fire border-danger-fire relative">
+                        <!-- Icon: Fire being extinguished (Nibbana) -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C9.5 2 7.2 3.2 6 5c1 .5 2 1 2.5 2s1 2 2 3c.5.5 1 1.5 2 2.5a2.1 2.1 0 0 0 2.8 2.8c1-.5 2-1 2.5-2s1-2 2-3c.5-.5 1-1.5 2-2.5C16.8 3.2 14.5 2 12 2z"/><path d="M12 22v-4"/></svg>
+                        <span class="absolute text-3xl font-extrabold -mt-2 ml-1 text-primary-buddha">&#9679;</span> <!-- Simple circle for Nibbana/Extinction -->
+                    </div>
+                    <div>
+                        <p class="text-sm font-light text-gray-500">තෙවන පියවර</p>
+                        <h3 class="text-2xl font-bold text-gray-900 leading-tight">3. නිවැරදි අරමුණ</h3>
+                        <p class="text-base text-danger-fire font-semibold">(ගින්න නිවාගැනීම)</p>
+                    </div>
+                </div>
+                
+                <p class="mt-4 text-gray-700 leading-relaxed">
+                    ධර්මය තියෙන්නේ තමන්ගේ ඇතුළේ තියෙන ගින්න (දුක) නිවාගන්න මිසක්, **සමාජයේ බැබළෙන්න** නෙවෙයි.
+                </p>
+                
+                <!-- Interactivity Button 1 (Tripitaka) -->
+                <button onclick="toggleExample('example-3-tripitaka')" class="mt-4 flex items-center text-sm font-semibold text-danger-fire hover:text-danger-fire/80 transition-colors duration-300">
+                    ත්‍රිපිටක උදාහරණ බලන්න (අලගද්දූපම සූත්‍රය - පෝරුව උපමාව)
+                    <svg id="icon-example-3-tripitaka" class="ml-2 w-4 h-4 rotate-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                </button>
+
+                <!-- Expandable Tripitaka Example 3 -->
+                <div id="example-3-tripitaka" class="expandable-content bg-gray-50 rounded-lg p-0 mt-2 border border-gray-200">
+                    <p class="text-sm text-gray-700 font-medium p-4">
+                        <span class="font-bold text-danger-fire">ත්‍රිපිටක උදාහරණය:</span> **අලගද්දූපම සූත්‍රයේ (පෝරුව උපමාව)** බුදුරජාණන් වහන්සේ පැහැදිලි කරන්නේ, ගඟෙන් එතෙර වීමට සාදාගත් පෝරුව (raft), ගඟෙන් එතෙර වූ පසු හිස මත තබාගෙන යාම නුවණට හුරු නැති ක්‍රියාවක් බවයි. එමෙන්ම ධර්මයද (පෝරුව) විමුක්තිය සඳහා වූ උපකරණයක් මිස, එයම අල්ලාගෙන සිටීමට ඇති දෙයක් නොවේ. එනම්, ධර්මයේ අරමුණ විමුක්තිය මිස, ධර්ම දැනුමෙන් ආඩම්බර වීම හෝ වාද කිරීම නොවේ.
+                    </p>
+                </div>
+
+                <!-- Interactivity Button 2 (Real World) -->
+                <button onclick="toggleExample('example-3')" class="mt-4 flex items-center text-sm font-semibold text-danger-fire hover:text-danger-fire/80 transition-colors duration-300">
+                    තවත් සැබෑ ලෝක උදාහරණ බලන්න
+                    <svg id="icon-example-3" class="ml-2 w-4 h-4 rotate-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                </button>
+
+                <!-- Expandable Real-World Example 3 -->
+                <div id="example-3" class="expandable-content bg-gray-50 rounded-lg p-0 mt-2 border border-gray-200">
+                    <p class="text-sm text-gray-700 font-medium p-4">
+                        <span class="font-bold text-danger-fire">සැබෑ ලෝක උදාහරණය:</span> ඔබ ධර්මය ඉගෙනගන්නේ සමාජ මාධ්‍ය ඔස්සේ අන්‍යයන් සමග වාදයකට ගොස් 'බෞද්ධ දැනුම' ප්‍රදර්ශනය කර ජයගැනීමට නම්, ඔබ කරන්නේ 'සර්පයෙක් වලිගයෙන් අල්ලා ගැනීම' වැනි භයානක වැඩකි (අලගද්දූපම සූත්‍රය). එනම්, වැරදි අරමුණක් සහිතව දැනුම භාවිත කිරීමෙන් ඔබේ මමත්වය (Ego) සහ දුක තව තවත් වැඩි වේ.
+                    </p>
+                </div>
+
+                <!-- Innovative Simulation/Chart -->
+                <div class="mt-8 pt-4 border-t border-gray-200">
+                    <h4 class="text-lg font-bold text-gray-700 mb-4">🎯 අරමුණු විශ්ලේෂක සිමියුලේෂන්</h4>
+                    <div class="bg-white p-4 rounded-xl border border-gray-300 shadow-inner">
+                        <label for="intentionInput" class="block text-sm font-medium text-gray-700 mb-2">ධර්ම මාර්ගයේ ඔබේ අරමුණ කුමක්ද? (උදා: දුක අඩු කිරීම, ප්‍රසිද්ධ වීම)</label>
+                        <input type="text" id="intentionInput" placeholder="ඔබේ අරමුණ ඇතුළු කරන්න..." class="w-full p-2 border border-gray-300 rounded-lg focus:ring-danger-fire focus:border-danger-fire">
+                        <button onclick="analyzeIntention()" class="mt-3 w-full p-2 bg-danger-fire text-white font-semibold rounded-lg hover:bg-danger-fire/90 transition-colors">
+                            අරමුණ විශ්ලේෂණය කරන්න
+                        </button>
+                        
+                        <div class="mt-4 p-3 border-t border-gray-200">
+                            <h5 class="font-bold text-base text-gray-800">📊 ප්‍රතිඵලය:</h5>
+                            <p id="intentionOutput" class="mt-2 text-sm text-gray-600 italic">මෙහි විශ්ලේෂණය දිස්වනු ඇත.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Conclusion and Call to Action -->
+        <footer class="mt-16 pt-8 border-t-4 border-secondary-gold/70 text-center bg-gray-100/50 p-6 rounded-xl">
+            <p class="text-3xl font-extrabold text-primary-buddha mb-4">
+                ✨ දහමේ ඇසින් බලමු!
+            </p>
+            <p class="text-xl text-gray-800 leading-relaxed font-semibold">
+                අමාරු වචන පස්සේ දුවන එක නවත්තලා, අද ඉඳන් හැම මොහොතකම ජීවිතේ දිහා
+                <span class="font-bold text-secondary-gold bg-secondary-gold/10 p-1 rounded">නුවණින් විමසන්න</span>.
+            </p>
+            <p class="mt-6 text-gray-500 text-sm">
+                ඔබ මොකද හිතන්නේ? මේ ප්‍රායෝගික කරුණු ඔබේ ජීවිතයට ගලපාගැනීමට දැන් ඔබට පහසුද?
+            </p>
+        </footer>
+
+    </div>
+
+</body>
+</html>
